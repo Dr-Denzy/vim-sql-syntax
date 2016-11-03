@@ -35,20 +35,20 @@ syn match   sqlError        ",\_\s*\(\<\(table\|using\|where\)\>\)\@="
 syn keyword sqlSpecial      false null true
 
 " Keywords
-syn keyword sqlKeyword      access add after aggregate as asc authorization
+syn keyword sqlKeyword      access add before after aggregate as asc authorization
 syn keyword sqlKeyword      begin by cache cascade check cluster collate
 syn keyword sqlKeyword      collation column compress conflict connect connection
-syn keyword sqlKeyword      constraint current cursor database debug decimal
-syn keyword sqlKeyword      default desc each else elsif escape exception
+syn keyword sqlKeyword      constraint current cursor database debug decimal declare
+syn keyword sqlKeyword      default definer desc each else elsif escape exception
 syn keyword sqlKeyword      exclusive explain external file for foreign from function
 syn keyword sqlKeyword      group having identified if immediate increment index
 syn keyword sqlKeyword      initial inner into is join key left level loop
 syn keyword sqlKeyword      maxextents mode modify nocompress nowait object of
 syn keyword sqlKeyword      off offline on online option order outer pctfree
 syn keyword sqlKeyword      primary privileges procedure public references
-syn keyword sqlKeyword      referencing release resource return role row rowid
+syn keyword sqlKeyword      referencing release resource return returns role row rowid
 syn keyword sqlKeyword      rowlabel rownum rows schema session share size
-syn keyword sqlKeyword      start successful synonym then to transaction trigger
+syn keyword sqlKeyword      start security successful synonym then to transaction trigger
 syn keyword sqlKeyword      uid user using validate values view virtual whenever
 syn keyword sqlKeyword      where with
 syn match   sqlKeyword      "\<prompt\>"
@@ -66,7 +66,7 @@ syn keyword sqlKeyword      foreign_keys freelist_count full_column_names
 syn keyword sqlKeyword      fullfsync ignore_check_constraints
 syn keyword sqlKeyword      incremental_vacuum index_info index_list
 syn keyword sqlKeyword      integrity_check journal_mode journal_size_limit
-syn keyword sqlKeyword      legacy_file_format locking_mode max_page_count
+syn keyword sqlKeyword      language legacy_file_format locking_mode max_page_count
 syn keyword sqlKeyword      page_count page_size parser_trace quick_check
 syn keyword sqlKeyword      read_uncommitted recursive_triggers
 syn keyword sqlKeyword      reverse_unordered_selects schema_version
@@ -127,19 +127,19 @@ syn match   sqlStatement    "\<\(replace\|create\)\>"
 syn keyword sqlStatement    attach detach indexed pragma reindex
 
 " Types - Only matched inside 'CREATE TABLE ();'.
-syn keyword sqlType         contained bigint bit blob bool boolean byte char
-syn keyword sqlType         contained clob date datetime dec decimal enum
-syn keyword sqlType         contained float int int8 integer interval long
-syn keyword sqlType         contained longblob longtext lvarchar mediumblob
-syn keyword sqlType         contained mediumint mediumtext mlslabel money
-syn keyword sqlType         contained multiset nchar number numeric nvarchar
-syn keyword sqlType         contained raw real rowid serial serial8 set
-syn keyword sqlType         contained smallfloat smallint text time
-syn keyword sqlType         contained timestamp tinyblob tinyint tinytext
-syn keyword sqlType         contained varchar varchar2 varray year
-syn match   sqlType         contained "\<\(character\|double\|varying\)\>"
-syn match   sqlType         contained "\<character\s\+varying\>"
-syn match   sqlType         contained "\<double\s\+precision\>"
+syn keyword sqlType         bigint bit blob bool boolean byte char
+syn keyword sqlType         clob date datetime dec decimal enum
+syn keyword sqlType         float int int8 integer interval jsonb long
+syn keyword sqlType         longblob longtext lvarchar mediumblob
+syn keyword sqlType         mediumint mediumtext mlslabel money
+syn keyword sqlType         multiset nchar number numeric nvarchar
+syn keyword sqlType         raw real rowid serial serial8 set
+syn keyword sqlType         smallfloat smallint text time
+syn keyword sqlType         timestamp tinyblob tinyint tinytext
+syn keyword sqlType         varchar varchar2 varray year
+syn match   sqlType         "\<\(character\|double\|varying\)\>"
+syn match   sqlType         "\<character\s\+varying\>"
+syn match   sqlType         "\<double\s\+precision\>"
 
 " Oracle Variables
 syn match   sqlVariable     "&\a\w\+"
@@ -150,6 +150,7 @@ syn match   sqlVariable     "SQL%\w\+"
 syn region sqlString        start=+"+  skip=+\\\\\|\\"+  end=+"+ contains=sqlVariable
 syn region sqlString        start=+'+  skip=+\\\\\|\\'+  end=+'+ contains=sqlVariable
 syn region sqlString        start=+`+  skip=+\\\\\|\\`+  end=+`+ contains=sqlVariable
+syn match  sqlString        "\$\w*\$"
 
 " Numbers
 syn match sqlNumber         "-\=\<[0-9]*\>"
@@ -194,7 +195,7 @@ syn match   sqlAnyString    contained ".*" contains=sqlVariable
 syn region  sqlSetRegion    matchgroup=sqlStatement start="^\s*set\>" matchgroup=NONE end="$" contains=sqlSetOptions,sqlSetValues
 syn keyword sqlSetOptions   contained autorecovery colsep copytypecheck describe escchar flagger
 syn keyword sqlSetOptions   contained instance logsource long null recsep recsepchar
-syn keyword sqlSetOptions   contained 
+syn keyword sqlSetOptions   contained
 syn match   sqlSetOptions   contained "\<\(app\w*\|array\w*\|auto\w*\|autop\w*\)\>"
 syn match   sqlSetOptions   contained "\<\(autot\w*\|blo\w*\|cmds\w*\|con\w*\|copyc\w*\)\>"
 syn match   sqlSetOptions   contained "\<\(def\w*\|echo\|editf\w*\|emb\w*\|errorl\w*\|esc\w*\)\>"
