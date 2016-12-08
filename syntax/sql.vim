@@ -50,7 +50,7 @@ syn keyword sqlKeyword      referencing release resource return returns role row
 syn keyword sqlKeyword      rowlabel rownum rows schema session share size
 syn keyword sqlKeyword      start security successful synonym then to transaction trigger
 syn keyword sqlKeyword      uid user using validate values view virtual whenever
-syn keyword sqlKeyword      where with
+syn keyword sqlKeyword      where with without
 syn match   sqlKeyword      "\<prompt\>"
 syn match   sqlKeyword      "\<glob\>"
 " Do special things with CREATE TABLE ( below.
@@ -72,7 +72,7 @@ syn keyword sqlKeyword      read_uncommitted recursive_triggers
 syn keyword sqlKeyword      reverse_unordered_selects schema_version
 syn keyword sqlKeyword      secure_delete short_column_names synchronous
 syn keyword sqlKeyword      table_info temp_store temp_store_directory
-syn keyword sqlKeyword      user_version vdbe_listing vdbe_trace
+syn keyword sqlKeyword      user_version vdbe_listing vdbe_trace type
 syn keyword sqlKeyword      wal_autocheckpoint wal_checkpoint writable_schema
 
 " Operators
@@ -136,7 +136,7 @@ syn keyword sqlType         multiset nchar number numeric nvarchar
 syn keyword sqlType         raw real rowid serial serial8 set
 syn keyword sqlType         smallfloat smallint text time
 syn keyword sqlType         timestamp tinyblob tinyint tinytext
-syn keyword sqlType         varchar varchar2 varray year
+syn keyword sqlType         varchar varchar2 varray year zone
 syn match   sqlType         "\<\(character\|double\|varying\)\>"
 syn match   sqlType         "\<character\s\+varying\>"
 syn match   sqlType         "\<double\s\+precision\>"
@@ -151,6 +151,7 @@ syn region sqlString        start=+"+  skip=+\\\\\|\\"+  end=+"+ contains=sqlVar
 syn region sqlString        start=+'+  skip=+\\\\\|\\'+  end=+'+ contains=sqlVariable
 syn region sqlString        start=+`+  skip=+\\\\\|\\`+  end=+`+ contains=sqlVariable
 syn match  sqlString        "\$\w*\$"
+syn match  sqlString        "%"
 
 " Numbers
 syn match sqlNumber         "-\=\<[0-9]*\>"
